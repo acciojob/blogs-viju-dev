@@ -15,7 +15,14 @@ public class ImageService {
     public Image addImage(int blogId, String description, String dimensions){
         //create an image based on given parameters and add it to the imageList of given blog
 
-        Image image =imageRepository2.save(new Image(blogRepository.getOne(blogId),description,dimensions));
+        Blog blog = blogRepository.findById(blogId).get();
+        Image image = new Image(blog,description,dimensions);
+        blog.getImageList().add(image);
+        blogRepository.save(blog); //cascading effect will save image too
+//        imageRepository2.save(image);
+
+
+//        Image image =imageRepository2.save(new Image(blogRepository.getOne(blogId),description,dimensions)); // giving null pointer exceptions
 //        List<Image> imageList = blog.getImageList();
 //        imageList.add(image);
 //        blog.setImageList(imageList);
@@ -37,14 +44,14 @@ public class ImageService {
         //In case the image is null, return 0
         int count = 0;
         String[] dimensions = screenDimensions.split("X");
-        int dim1 = Integer.parseInt(dimensions[0]);
-        int dim2 = Integer.parseInt(dimensions[1]);
+        int dim1 = Integer.valueOf(dimensions[0]);
+        int dim2 = Integer.valueOf(dimensions[1]);
 
         Image image = imageRepository2.findById(id).get();  //.getOne(id) gives error
         String imgDimension = image.getDimensions();
         String[] imgDimensions = imgDimension.split("X");
-        int imgDim1 = Integer.parseInt(imgDimensions[0]);
-        int imgDim2 = Integer.parseInt(imgDimensions[1]);
+        int imgDim1 = Integer.valueOf(imgDimensions[0]);
+        int imgDim2 = Integer.valueOf(imgDimensions[1]);
 
         int horizontal = dim1/imgDim1;
         int vertical = dim2/imgDim2;

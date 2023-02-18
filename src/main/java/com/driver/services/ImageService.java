@@ -11,14 +11,14 @@ public class ImageService {
     @Autowired
     ImageRepository imageRepository2;
     @Autowired
-    BlogRepository blogRepository;
+    BlogRepository blogRepository2;
     public Image addImage(int blogId, String description, String dimensions){
         //create an image based on given parameters and add it to the imageList of given blog
 
-        Blog blog = blogRepository.findById(blogId).get();
+        Blog blog = blogRepository2.findById(blogId).get();
         Image image = new Image(blog,description,dimensions);
         blog.getImageList().add(image);
-        blogRepository.save(blog); //cascading effect will save image too
+        blogRepository2.save(blog); //cascading effect will save image too
 //        imageRepository2.save(image);
 
 

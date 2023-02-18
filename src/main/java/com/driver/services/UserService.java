@@ -19,9 +19,10 @@ public class UserService {
     @Autowired
     BlogService blogService3;
 
-    public void createUser(String username,String password){
-         userRepository3.save(new User(username,password));
-         return;
+    public User createUser(String username,String password){
+         User user = new User(username,password);
+         userRepository3.save(user);
+         return user;
     }
 
     public void deleteUser(int userId){
@@ -29,14 +30,16 @@ public class UserService {
         return;
     }
 
-    public void updateUser(int id,String password){
+    public User updateUser(int id,String password){
         User user = userRepository3.findById(id).get();
+       user.setPassword(password);
        userRepository3.save(user);
+       return user;
 
     }
 
-    public User findUserByUsername(String username){
-        return userRepository3.findByUsername(username); // we just added this method in repo but not implemented
-    }
+//    public User findUserByUsername(String username){
+//        return userRepository3.findByUsername(username); // we just added this method in repo but not implemented
+//    }
 
 }

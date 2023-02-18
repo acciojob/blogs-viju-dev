@@ -32,9 +32,9 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/find/{username}")
-    public ResponseEntity<User> findUserByUsername(@PathVariable String username) {
-        User user = userService.findUserByUsername(username);
-        return new ResponseEntity<>(user, HttpStatus.OK);
-    }
+//    @GetMapping("/find/{username}")
+//    public ResponseEntity<User> findUserByUsername(@PathVariable String username) {
+//        User user = userService.findUserByUsername(username);
+//        return new ResponseEntity<>(user, HttpStatus.OK);
+//    }
 }

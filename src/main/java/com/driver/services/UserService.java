@@ -20,8 +20,8 @@ public class UserService {
     BlogService blogService3;
 
     public void createUser(User user){
-        userRepository3.save(user);
-        return;
+         userRepository3.save(user);
+         return;
     }
 
     public void deleteUser(int userId){

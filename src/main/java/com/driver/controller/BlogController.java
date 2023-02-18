@@ -24,8 +24,8 @@ BlogService blogService;
     public ResponseEntity createBlog(@RequestParam Integer userId ,
                                            @RequestParam String title,
                                            @RequestParam String content) throws Exception {
-        blogService.createAndReturnBlog(userId, title, content);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+        Blog blog = blogService.createAndReturnBlog(userId, title, content);
+        return new ResponseEntity<>(blog,HttpStatus.CREATED);
     }
 
     @PutMapping("/{blogId}/add-image")
@@ -38,7 +38,7 @@ BlogService blogService;
     public ResponseEntity<Void> deleteBlog(@PathVariable int blogId) {
 
         blogService.deleteBlog(blogId);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
 

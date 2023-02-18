@@ -37,14 +37,14 @@ public class ImageService {
         //In case the image is null, return 0
         int count = 0;
         String[] dimensions = screenDimensions.split("X");
-        int dim1 = Integer.valueOf(dimensions[0]);
-        int dim2 = Integer.valueOf(dimensions[1]);
+        int dim1 = Integer.parseInt(dimensions[0]);
+        int dim2 = Integer.parseInt(dimensions[1]);
 
-        Image image = imageRepository2.findById(id).get();
+        Image image = imageRepository2.findById(id).get();  //.getOne(id) gives error
         String imgDimension = image.getDimensions();
         String[] imgDimensions = imgDimension.split("X");
-        int imgDim1 = Integer.valueOf(imgDimensions[0]);
-        int imgDim2 = Integer.valueOf(imgDimensions[1]);
+        int imgDim1 = Integer.parseInt(imgDimensions[0]);
+        int imgDim2 = Integer.parseInt(imgDimensions[1]);
 
         int horizontal = dim1/imgDim1;
         int vertical = dim2/imgDim2;

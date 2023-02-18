@@ -55,7 +55,7 @@ public class BlogService {
 
     public void addImage(Integer blogId, String description, String dimensions){
         //add an image to the blog after creating it
-        imageService1.createAndReturn(blogRepository1.getOne(blogId),description,dimensions);
+        imageService1.addImage(blogId,description,dimensions);
         return;
     }
 

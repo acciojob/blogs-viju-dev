@@ -13,10 +13,10 @@ public class Blog {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer BlogId;
+    private Integer id;
 
-    private String Title;
-    private String Content;
+    private String title;
+    private String content;
 
     @CreationTimestamp
     private Date pubDate;
@@ -42,38 +42,38 @@ public class Blog {
     }
     public Blog(User user,String title, String content) {
         this.user = user;
-        Title = title;
-        Content = content;
+        this.title = title;
+        this.content = content;
     }
 
-    public Blog(Integer blogId, String title, String content) {
-        BlogId = blogId;
-        Title = title;
-        Content = content;
+    public Blog(Integer id, String title, String content) {
+        this.id = id;
+        this.title = title;
+        this.content = content;
     }
 
-    public Integer getBlogId() {
-        return BlogId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setBlogId(Integer blogId) {
-        BlogId = blogId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getTitle() {
-        return Title;
+        return title;
     }
 
     public void setTitle(String title) {
-        Title = title;
+        this.title = title;
     }
 
     public String getContent() {
-        return Content;
+        return content;
     }
 
     public void setContent(String content) {
-        Content = content;
+        this.content = content;
     }
 
     public Date getPubDate() {

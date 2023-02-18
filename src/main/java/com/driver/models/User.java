@@ -1,7 +1,6 @@
 package com.driver.models;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -10,9 +9,9 @@ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer UserId;
+    private Integer id;
 
-    private String UserName;
+    private String username;
     private String Password;
     private String firstName;
     private String lastName;
@@ -27,20 +26,29 @@ public class User {
     public User(){
 
     }
-    public User(String userName, String password) {
-        UserName = userName;
+    public User(String username, String password) {
+        this.username = username;
         Password = password;
-        this.firstName = "test";
-        this.lastName = "test";
-        blogList = new ArrayList<>();//empty
+//        this.firstName = "test";
+//        this.lastName = "test";
+//        blogList = new ArrayList<>();//empty
     }
 
-    public Integer getUserId() {
-        return UserId;
+    public User(Integer id, String username, String password, String firstName, String lastName, List<Blog> blogList) {
+        this.id = id;
+        this.username = username;
+        Password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.blogList = blogList;
     }
 
-    public void setUserId(Integer userId) {
-        UserId = userId;
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public List<Blog> getBlogList() {
@@ -51,12 +59,12 @@ public class User {
         this.blogList = blogList;
     }
 
-    public String getUserName() {
-        return UserName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        UserName = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {

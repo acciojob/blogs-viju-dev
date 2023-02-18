@@ -8,10 +8,10 @@ public class Image {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer ImgId;
+    private Integer id;
 
-    private String Description;
-    private String Dimension;
+    private String description;
+    private String dimension;
 
 //    public Image(Integer imgId, String description, String dimension) {
 //        ImgId = imgId;
@@ -28,14 +28,14 @@ public class Image {
 
     }
     public Image(Blog blog, String description, String dimensions) {
-        this.Description = description;
-        this.Dimension = dimensions;
+        this.description = description;
+        this.dimension = dimensions;
         this.blog = blog;
     }
     public Image(int id,String description, String dimension) {
-        ImgId = id;
-        Description = description;
-        Dimension = dimension;
+        this.id = id;
+        this.description = description;
+        this.dimension = dimension;
     }
 
     public Blog getBlog() {
@@ -46,27 +46,27 @@ public class Image {
         this.blog = blog;
     }
 
-    public Integer getImgId() {
-        return ImgId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setImgId(Integer imgId) {
-        ImgId = imgId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getDescription() {
-        return Description;
+        return description;
     }
 
     public void setDescription(String description) {
-        Description = description;
+        this.description = description;
     }
 
     public String getDimension() {
-        return Dimension;
+        return dimension;
     }
 
     public void setDimension(String dimension) {
-        Dimension = dimension;
+        this.dimension = dimension;
     }
 }

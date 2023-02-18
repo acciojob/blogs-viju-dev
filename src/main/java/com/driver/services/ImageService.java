@@ -1,22 +1,21 @@
 package com.driver.services;
 
 import com.driver.models.*;
+import com.driver.repositories.BlogRepository;
 import com.driver.repositories.ImageRepository;
-import org.hibernate.sql.Select;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class ImageService {
     @Autowired
     ImageRepository imageRepository2;
-
-    public Image createAndReturn(Blog blog, String description, String dimensions){
+    @Autowired
+    BlogRepository blogRepository;
+    public Image addImage(int blogId, String description, String dimensions){
         //create an image based on given parameters and add it to the imageList of given blog
 
-        Image image =imageRepository2.save(new Image(blog,description,dimensions));
+        Image image =imageRepository2.save(new Image(blogRepository.getOne(blogId),description,dimensions));
 //        List<Image> imageList = blog.getImageList();
 //        imageList.add(image);
 //        blog.setImageList(imageList);
@@ -42,7 +41,7 @@ public class ImageService {
         int dim2 = Integer.valueOf(dimensions[1]);
 
         Image image = imageRepository2.getOne(id);
-        String imgDimension = image.getDimension();
+        String imgDimension = image.getDimensions();
         String[] imgDimensions = imgDimension.split("X");
         int imgDim1 = Integer.valueOf(imgDimensions[0]);
         int imgDim2 = Integer.valueOf(imgDimensions[1]);

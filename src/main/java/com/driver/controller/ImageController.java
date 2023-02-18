@@ -13,12 +13,10 @@ import org.springframework.web.bind.annotation.*;
 public class ImageController {
 @Autowired
 ImageService imageService;
-    @PostMapping("/create")
-    public ResponseEntity<Image> createAndReturn(@RequestBody Blog blog,
-                                                 @RequestParam String description,
-                                                 @RequestParam String dimensions) {
-        Image image = imageService.createAndReturn(blog,description,dimensions);
-        return new ResponseEntity<>(image, HttpStatus.CREATED);
+    @PostMapping("/{blogId}/add-image")
+    public ResponseEntity<String> addImage(@PathVariable int blogId, @RequestParam String description, @RequestParam String dimensions) {
+        imageService.addImage(blogId,description,dimensions);
+        return new ResponseEntity<>("Added image successfully", HttpStatus.OK);
     }
 
     @GetMapping("/countImagesInScreen/{id}/{screenDimensions}")

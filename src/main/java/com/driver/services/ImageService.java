@@ -46,9 +46,10 @@ public class ImageService {
         int imgDim1 = Integer.valueOf(imgDimensions[0]);
         int imgDim2 = Integer.valueOf(imgDimensions[1]);
 
-        int horizontal = imgDim1/dim1;
-        int vertical = imgDim2/dim2;
+        int horizontal = dim1/imgDim1;
+        int vertical = dim2/imgDim2;
         count = horizontal * vertical;
+
         return count;
     }
 }

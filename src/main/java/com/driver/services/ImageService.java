@@ -40,7 +40,7 @@ public class ImageService {
         int dim1 = Integer.valueOf(dimensions[0]);
         int dim2 = Integer.valueOf(dimensions[1]);
 
-        Image image = imageRepository2.getOne(id);
+        Image image = imageRepository2.findById(id).get();
         String imgDimension = image.getDimensions();
         String[] imgDimensions = imgDimension.split("X");
         int imgDim1 = Integer.valueOf(imgDimensions[0]);

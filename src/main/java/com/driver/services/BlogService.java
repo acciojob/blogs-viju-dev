@@ -39,7 +39,8 @@ public class BlogService {
         User user = userRepository1.findById(userId).get();
         Blog blog = new Blog(user,title,content);
         blog.setPubDate(new Date());
-        blogRepository1.save(blog); //blog created
+        userRepository1.save(user); // blog saved in repo by cascading
+       // blogRepository1.save(blog); //blog created
         user.getBlogList().add(blog);
         return blog;
 

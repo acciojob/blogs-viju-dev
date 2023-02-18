@@ -31,13 +31,14 @@ public class BlogService {
         return blogList;
     }
 
-    public Blog createAndReturnBlog(Integer userId, String title, String content) throws Exception {
+    public Blog createAndReturnBlog(Integer userId, String title, String content) {
         //create a blog at the current time
-        if(userRepository1.findById(userId).isPresent()){
-            throw new Exception();
-        }
+//        if(userRepository1.findById(userId).isPresent()){
+//            throw new Exception();
+//        }
         User user = userRepository1.findById(userId).get();
         Blog blog = new Blog(user,title,content);
+        blog.setPubDate(new Date());
         blogRepository1.save(blog); //blog created
         user.getBlogList().add(blog);
         return blog;

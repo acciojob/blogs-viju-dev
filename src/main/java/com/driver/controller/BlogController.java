@@ -23,7 +23,7 @@ BlogService blogService;
     @PostMapping
     public ResponseEntity createBlog(@RequestParam Integer userId ,
                                            @RequestParam String title,
-                                           @RequestParam String content) throws Exception {
+                                           @RequestParam String content) {
         Blog blog = blogService.createAndReturnBlog(userId, title, content);
         return new ResponseEntity<>(blog,HttpStatus.CREATED);
     }

@@ -16,16 +16,16 @@ public class ImageService {
     public Image createAndReturn(Blog blog, String description, String dimensions){
         //create an image based on given parameters and add it to the imageList of given blog
 
-        Image image =imageRepository2.save(new Image(description,dimensions));
-        List<Image> imageList = blog.getImageList();
-        imageList.add(image);
-        blog.setImageList(imageList);
+        Image image =imageRepository2.save(new Image(blog,description,dimensions));
+//        List<Image> imageList = blog.getImageList();
+//        imageList.add(image);
+//        blog.setImageList(imageList);
         return image;
     }
 
-    public void deleteImage(Image image){
+    public void deleteImage(int image){
 
-        imageRepository2.delete(image);
+        imageRepository2.deleteById(image);
         return;
     }
 
@@ -33,7 +33,7 @@ public class ImageService {
         return imageRepository2.getOne(id);
     }
 
-    public int countImagesInScreen(Image image, String screenDimensions) {
+    public int countImagesInScreen(int id, String screenDimensions) {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
         //In case the image is null, return 0
         int count = 0;
@@ -41,16 +41,13 @@ public class ImageService {
         String[] dimensions = screenDimensions.split("X");
         totalDimension = Integer.valueOf(dimensions[0]) * Integer.valueOf(dimensions[1]);
         int canFit =0;
-        List<Image> imageList = imageRepository2.findAll();
-        for (Image image1:imageList){
-            String[] imgDim = image1.getDimension().split("X");
-            if((Integer.valueOf(imgDim[0] )* Integer.valueOf(imgDim[1])) < totalDimension) {
-                totalDimension -= Integer.valueOf(imgDim[0] )* Integer.valueOf(imgDim[1]);
-                count++;
-            }
-            else {
-                break;
-            }
+        Image image = imageRepository2.getOne(id);
+        String imgDims = image.getDimension();
+        String[] dimArr = imgDims.split("X");
+        int imgDim = Integer.valueOf(dimArr[0]) * Integer.valueOf(dimArr[1]);
+        while(imgDim <= totalDimension){
+            count++;
+            totalDimension -= imgDim;
         }
         return count;
     }

@@ -19,11 +19,31 @@ public class Image {
 //        Dimension = dimension;
 //    }
 
+    //map
+    @ManyToOne
+    @JoinColumn
+    private Blog blog; // here we mention where we ave to join for many to one  // or child case // in chils class
 
-    public Image(String description, String dimension) {
-        ImgId = getImgId();
+    public  Image(){
+
+    }
+    public Image(Blog blog, String description, String dimensions) {
+        this.Description = description;
+        this.Dimension = dimensions;
+        this.blog = blog;
+    }
+    public Image(int id,String description, String dimension) {
+        ImgId = id;
         Description = description;
         Dimension = dimension;
+    }
+
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
     }
 
     public Integer getImgId() {

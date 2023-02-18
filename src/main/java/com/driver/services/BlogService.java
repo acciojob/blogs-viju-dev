@@ -31,9 +31,16 @@ public class BlogService {
         return blogList;
     }
 
-    public void createAndReturnBlog(Integer userId, String title, String content) {
+    public void createAndReturnBlog(Integer userId, String title, String content) throws Exception {
         //create a blog at the current time
-        blogRepository1.save(new Blog(userId,title,content)); //blog created
+        if(userRepository1.findById(userId).isPresent()){
+            throw new Exception();
+        }
+        User user = userRepository1.findById(userId).get();
+        Blog blog = new Blog(user,title,content);
+        blogRepository1.save(blog); //blog created
+        user.getBlogList().add(blog);
+        return;
 
         //updating the blog details
 
